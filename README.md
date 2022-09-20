@@ -4,31 +4,31 @@
 | ------------------ | -------- | ------------------------- |
 | nickname           | string   | null: false               |
 | email              | string   | null: false, unique: true |
-| password           | string   | null: false               |
+| encrypted_password | string   | null: false, unique: true |
 | first_name         | string   | null: false               |
 | last_name          | string   | null: false               |
 | first_kana         | string   | null: false               |
-| first_kana         | string   | null: false               |
-| birth_year         | integer  | null: false               |
-| birth_month        | integer  | null: false               |
-| birth_day          | integer  | null: false               |
+| last_kana          | string   | null: false               |
+| birthday           | data     | null: false               |
+
 
 Assosiation
-has_one :credit_card
-has_one :sending_destination
 has_many :items
+has_many :buying historys
 has_many :comments
 
-## credit_cardsテーブル テーブル
 
-| Column             | Type     | Options                   |
-| ------------------ | -------- | ------------------------- |
-| user_id            | integer  | null: false               |
-| customer_id        | string   | null: false               |
-| card_id            | string   | null: false               |
+## buying_historys テーブル　
+
+| Column             | Type     | Options                       |
+| ------------------ | -------- | ----------------------------- |
+| user_id            | integer  | null: false,foreign_key: true |
+| item_id            | string   | null: false,foreign_key: true |
 
 Association
-belongs_to :user
+has_many :user
+belongs_to :item
+belongs_to :sending_destination
 
 
 
@@ -36,24 +36,25 @@ belongs_to :user
 
 | Column             | Type         | Options                        |
 | ------------------ | ------------ | ------------------------------ |
-| post_code          | string       | null: false                    |
-| prefecture         | string       | null: false                    |
+| buying_historys    | string       | null: false,foreign_key: true  |
+| prefecture_id      | string       | null: false                    |
 | city               | string       | null: false                    |
-| house_number       | string       |                                |
-| building_name      | string       | null: false                    |
+| house_number       | string       | null: false                    |
+| building_name      | string       |                                |
 | phone_number       | string       | null: false                    |
-| user               | references   | null: false, foreign_key: true |
+| post_code          | string       | null: false                    |
 
 Assosiation
-belongs_to :user
+belongs_to : buying_history
 
 ## comments テーブル
 
 | Column             | Type         | Options                        |
 | ------------------ | ------------ | ------------------------------ |
-| body               | text         |                                |
-| user               | references   | null: false                    |
+| user               | references   | null: false, foreign_key: true |
 | item               | references   | null: false                    |
+| text               | references   | null: false                    |
+
 
 Assosiation
 belongs_to :user
@@ -62,45 +63,19 @@ belongs_to :item
 
 ## items テーブル
 
-| Column             | Type       | Options                         |
-| ------------------ | ---------- | ------------------------------- |
-| name               | string     | null: false                     |
-| price              | integer    | null: false                     |
-| item_description   | string     |                                 |
-| item_condition_id  | integer    | null: false, foreign_key: true  |
-| postage_payer_id   | integer    | null: false, foreign_key: true  |
-| preparation_day_id | integer    | null: false, foreign_key: true  |
-| prefecture_id      | integer    | null: false, foreign_key: true  |
-| buyer              | references | foreign_key: true               |
-| seller             | references | null: false, foreign_key: true  |
-| category           | references | null: false, foreign_key: true  |
-| brand              | integer    | foreign_key: true               |
-| image              | references | null: false, foreign_key: true  |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | -------------------------------|
+| user               | string     | null: false, foreign_key: true |
+| name               | string     | null: false                    |
+| price              | integer    | null: false                    |
+| item_description   | text       | null: false                    |
+| item_condition_id  | integer    | null: false                    |
+| postage_payer_id   | integer    | null: false                    |
+| preparation_day_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| seller             | references | null: false,foreign_key: true  |
 
 Assosiation
-has_many :item_images
+belongs_to :user
+has_one :buying_history
 has_many :comments
-belongs_to :category
-
-
-## categories テーブル
-
-| Column             | Type       | Options                         |
-| ------------------ | ---------- | ------------------------------- |
-| name               | string     | null: false                     |
-| ancestry           | string     | null: false                     |
-
-Assosiation
-has_many :items
-has_ancestry
-
-## item_images テーブル
-
-| Column             | Type       | Options                         |
-| ------------------ | ---------- | ------------------------------- |
-| image              | text       | null: false                     |
-| item               | references | null: false, foreign_key: true  |
-
-
-Assosiation
-belongs_to :item
