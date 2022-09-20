@@ -14,7 +14,7 @@
 
 Assosiation
 has_many :items
-has_many :buying historys
+has_many :buying_historys
 
 
 
@@ -57,10 +57,9 @@ belongs_to : buying_history
 | description        | text       | null: false                    |
 | category_id        | integer    | null: false                    |
 | item_condition_id  | integer    | null: false                    |
-| postage_payer_id   | integer    | null: false                    |
-| preparation_day_id | integer    | null: false                    |
+| shipping_cost_id   | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
-| shipping_date_id   | integer    | null: false                    |
+| shipping time_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
 
 Assosiation
