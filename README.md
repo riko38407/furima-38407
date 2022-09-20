@@ -15,67 +15,55 @@
 Assosiation
 has_many :items
 has_many :buying historys
-has_many :comments
+
 
 
 ## buying_historys テーブル　
 
-| Column             | Type     | Options                       |
-| ------------------ | -------- | ----------------------------- |
-| user_id            | integer  | null: false,foreign_key: true |
-| item_id            | string   | null: false,foreign_key: true |
+| Column             | Type       | Options                       |
+| ------------------ | ---------- | ----------------------------- |
+| user               | references | null: false,foreign_key: true |
+| item               | references | null: false,foreign_key: true |
 
 Association
-has_many :user
+belongs_to :user
 belongs_to :item
-belongs_to :sending_destination
+has_one :sending_destination
 
 
 
 ## sending_destinations テーブル 
 
-| Column             | Type         | Options                        |
-| ------------------ | ------------ | ------------------------------ |
-| buying_historys    | string       | null: false,foreign_key: true  |
-| prefecture_id      | string       | null: false                    |
-| city               | string       | null: false                    |
-| house_number       | string       | null: false                    |
-| building_name      | string       |                                |
-| phone_number       | string       | null: false                    |
-| post_code          | string       | null: false                    |
+| Column             | Type         | Options                         |
+| ------------------ | ------------ | ------------------------------- |
+| buying_historys    | references   | null: false,foreign_key: true |
+| prefecture_id      | integer      | null: false                     |
+| city               | string       | null: false                     |
+| house_number       | string       | null: false                     |
+| building_name      | string       |                                 |
+| phone_number       | string       | null: false                     |
+| post_code          | string       | null: false                     |
 
 Assosiation
 belongs_to : buying_history
-
-## comments テーブル
-
-| Column             | Type         | Options                        |
-| ------------------ | ------------ | ------------------------------ |
-| user               | references   | null: false, foreign_key: true |
-| item               | references   | null: false                    |
-| text               | references   | null: false                    |
-
-
-Assosiation
-belongs_to :user
-belongs_to :item
 
 
 ## items テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | -------------------------------|
-| user               | string     | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 | name               | string     | null: false                    |
-| price              | integer    | null: false                    |
-| item_description   | text       | null: false                    |
+| description        | text       | null: false                    |
+| category_id        | integer    | null: false                    |
 | item_condition_id  | integer    | null: false                    |
 | postage_payer_id   | integer    | null: false                    |
 | preparation_day_id | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
-| seller             | references | null: false,foreign_key: true  |
+| shipping_date_id   | integer    | null: false                    |
+| price              | integer    | null: false                    |
 
 Assosiation
 belongs_to :user
 has_one :buying_history
-has_many :comments
+
