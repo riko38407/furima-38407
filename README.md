@@ -59,7 +59,7 @@ belongs_to : buying_history
 | item_condition_id  | integer    | null: false                    |
 | shipping_cost_id   | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
-| shipping time_id   | integer    | null: false                    |
+| shipping_date_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
 
 Assosiation
