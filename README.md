@@ -9,7 +9,7 @@
 | last_name          | string   | null: false               |
 | first_kana         | string   | null: false               |
 | last_kana          | string   | null: false               |
-| birthday           | data     | null: false               |
+| birthday           | date     | null: false               |
 
 
 Assosiation
