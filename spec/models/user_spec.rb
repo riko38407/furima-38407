@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
       it '全ての入力事項が、存在すれば登録できる' do
         expect(@user).to be_valid
       end
-      
+
       it '名字が全角（漢字・ひらがな・カタカナ）であれば登録できる' do
         @user.first_name = '山田'
         expect(@user).to be_valid
@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        
+
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
 
@@ -86,7 +86,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      
+
       it '名字が全角（漢字・ひらがな・カタカナ）でないと登録できない' do
         @user.first_name = ''
         @user.valid?
