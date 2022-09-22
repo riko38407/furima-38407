@@ -15,19 +15,19 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
       it '名字が全角（漢字・ひらがな・カタカナ）であれば登録できる' do
-        @user.last_name = '山田'
+        @user.first_name = '山田'
         expect(@user).to be_valid
       end
       it '名前が全角（漢字・ひらがな・カタカナ）であれば登録できる' do
-        @user.first_name = '陸太郎'
+        @user.last_name = '陸太郎'
         expect(@user).to be_valid
       end
       it '名字のフリガナが全角（カタカナ）であれば登録できる' do
-        @user.last_name_kana = 'ヤマダ'
+        @user.first_kana = 'ヤマダ'
         expect(@user).to be_valid
       end
       it '名前のフリガナが全角（カタカナ）であれば登録できる' do
-        @user.first_name_kana = 'リクタロウ'
+        @user.last_kana = 'リクタロウ'
         expect(@user).to be_valid
       end
     end
@@ -58,6 +58,7 @@ RSpec.describe User, type: :model do
       another_user.valid?
       # binding.pry
       expect(another_user.errors.full_messages).to include('Email has already been taken')
+    end
 
     it 'passwordが空では登録できない' do
       @user.password = ''
@@ -122,4 +123,4 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
+end

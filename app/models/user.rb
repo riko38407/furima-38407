@@ -6,11 +6,17 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :buying_historys
-         
-  validates :nickname, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :first_kana, presence: true
-  validates :last_kana, presence: true
-  validates :birthday, presence: true
+  
+  with_options presence: true do
+    PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+    validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers'
+    
+    validates :nickname, uniqueness: true
+    validates :email,    uniqueness: true
+    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :first_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+    validates :last_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+    validates :birthday, presence: true
+  end
 end

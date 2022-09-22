@@ -5,6 +5,12 @@ class ItemsController < ApplicationController
     
   end
 
+  def create
+ 
+  end 
+
+
+
 end
 private
 def move_to_index
