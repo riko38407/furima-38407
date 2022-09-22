@@ -6,11 +6,11 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :buying_historys
-  
+
   with_options presence: true do
-    PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
-    validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers'
     
+    validates :password, format: { with: /\A[a-z0-9]+\z/i, message: 'Include both letters and numbers' }, allow_nil: true
+
     validates :nickname, uniqueness: true
     validates :email,    uniqueness: true
     validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
