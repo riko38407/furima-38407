@@ -60,7 +60,7 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーの情報が「---」だと出品できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category must be other than 0')
+        expect(@item.errors.full_messages).to include('Category Select')
       end
       it 'カテゴリーの情報が空欄だと出品できない' do
         @item.category_id = nil
@@ -70,7 +70,7 @@ RSpec.describe Item, type: :model do
       it '商品の状態の情報が「---」だと出品できない' do
         @item.item_status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item status must be other than 0')
+        expect(@item.errors.full_messages).to include('Item status Select')
       end
       it '商品の状態の情報が空欄だと出品できない' do
         @item.item_status_id = nil
@@ -80,7 +80,7 @@ RSpec.describe Item, type: :model do
       it '配送料の負担の情報が「---」だと出品できない' do
         @item.shipping_cost_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Shipping cost must be other than 0')
+        expect(@item.errors.full_messages).to include('Shipping cost Select')
       end
       it '配送料の負担の情報が空欄だと出品できない' do
         @item.shipping_cost_id = nil
@@ -90,7 +90,7 @@ RSpec.describe Item, type: :model do
       it '発送元の地域の情報が「---」だと出品できない' do
         @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
+        expect(@item.errors.full_messages).to include('Prefecture Select')
       end
       it '発送元の地域の情報が空欄だと出品できない' do
         @item.prefecture_id = nil
@@ -100,7 +100,7 @@ RSpec.describe Item, type: :model do
       it '発送までの日数の情報が「---」だと出品できない' do
         @item.shipping_date_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Shipping date must be other than 0')
+        expect(@item.errors.full_messages).to include('Shipping date Select')
       end
       it '発送までの日数の情報が空欄だと出品できない' do
         @item.shipping_date_id = nil
