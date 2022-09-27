@@ -51,7 +51,10 @@ class ItemsController < ApplicationController
   end
 
   def sign_item
-    @items = current_user.id
-    redirect_to root_path unless @item
+    if @items = current_user.id
+
+    else
+    redirect_to root_path
   end
+end
 end
