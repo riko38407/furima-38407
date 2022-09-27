@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :sign_item, only: [:edit, :destroy]
-  
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -37,9 +36,8 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-      redirect_to  root_path
-    
-    end
+    redirect_to root_path
+  end
 
   private
 
@@ -55,5 +53,5 @@ class ItemsController < ApplicationController
   def sign_item
     @items = current_user.id
     redirect_to root_path unless @item
-end
+  end
 end
