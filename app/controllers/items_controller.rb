@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order('created_at DESC')
+   
   end
 
   def new
@@ -51,10 +52,10 @@ class ItemsController < ApplicationController
   end
 
   def sign_item
-    if @items = current_user.id
-
-    else
-      redirect_to root_path
+      if user_signed_in? && current_user.id == @item.user_id
+       
+      else 
+        redirect_to root_path
     end
   end
 end
