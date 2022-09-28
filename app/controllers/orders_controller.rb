@@ -20,9 +20,9 @@ class OrdersController < ApplicationController
    params.require(:order_form).permit(:prefecture_id, :city, :house_number, :building_name, :phone_number,:post_code).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
-  def  non_purchased_item
+  def non_purchased_item
     @item = Item.find(params[:item_id])
-    redirect_to root_path if current_user.id == @item.user_id 
+    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 
 end
