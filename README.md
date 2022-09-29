@@ -14,11 +14,11 @@
 
 Assosiation
 has_many :items
-has_many :buying_historys
+has_many :orders
 
 
 
-## buying_historys テーブル　
+## orders テーブル　
 
 | Column             | Type       | Options                       |
 | ------------------ | ---------- | ----------------------------- |
@@ -28,15 +28,15 @@ has_many :buying_historys
 Association
 belongs_to :user
 belongs_to :item
-has_one :sending_destination
+has_one :payment
 
 
 
-## sending_destinations テーブル 
+## payments テーブル 
 
 | Column             | Type         | Options                         |
 | ------------------ | ------------ | ------------------------------- |
-| buying_historys    | references   | null: false,foreign_key: true |
+| orders             | references   | null: false,foreign_key: true |
 | prefecture_id      | integer      | null: false                     |
 | city               | string       | null: false                     |
 | house_number       | string       | null: false                     |
@@ -45,7 +45,7 @@ has_one :sending_destination
 | post_code          | string       | null: false                     |
 
 Assosiation
-belongs_to : buying_history
+belongs_to : order
 
 
 ## items テーブル
@@ -64,5 +64,5 @@ belongs_to : buying_history
 
 Assosiation
 belongs_to :user
-has_one :buying_history
+has_one : payment
 
