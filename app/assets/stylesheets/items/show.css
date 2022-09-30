@@ -205,3 +205,21 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.comment-form{
+  display: flex;
+}
+
+.comment-text{
+  display: block;
+  margin-top: 20px;
+}
+
+.comment{
+  display: flex;
+}
+
+.user-info{
+  color: gray;
+  font-weight: bold;
+}
