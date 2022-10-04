@@ -73,8 +73,8 @@ has_one : payment
 
 | Column             | Type       | Options                       |
 | ------------------ | ---------- | ----------------------------- |
-| user               | references | null: false,foreign_key: true |
-| item               | references | null: false,foreign_key: true |
+| user               | integer    | null: false,foreign_key: true |
+| item               | integer    | null: false,foreign_key: true |
 | text               | text       | null: false                   |
 
 Association
